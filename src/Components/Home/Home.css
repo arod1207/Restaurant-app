@@ -1,8 +1,8 @@
 .home {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
-.home__item {
-    display: flex;
-    justify-content: space-between;
+.home__title {
+    text-align: center;
 }

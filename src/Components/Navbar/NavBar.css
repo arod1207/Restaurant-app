@@ -1,11 +1,34 @@
-.navbar__cartIcon {
-    font-size: 30px;
-    margin-left: 10px;
-    color: yellow;
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-items: center;
+    background-color: darkgray;
+    padding: 15px;
 }
 
-.navbar__orderNumber {
-    font-size: 30px;
-    color: yellow;
-    margin-left: 5px;
+.navbar__left {
+    font-size: large;
+    font-weight: 800;
+}
+
+.navbar__right {
+    display: flex;
+    margin-right: 10px;
+}
+
+.navbar__cart {
+    display: flex;
+    align-items: center;
+}
+
+.navbar__itemCount {
+    display: flex;
+    align-items: center;
+    font-size: large;
+    font-weight: 700;
+}
+
+.navbar__options {
+    margin: 3px;
 }

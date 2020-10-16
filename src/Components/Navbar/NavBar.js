@@ -2,28 +2,38 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { Navbar, Nav, Button } from 'react-bootstrap';
+import Button from '@material-ui/core/Button';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 import './NavBar.css';
 
 function NavBar() {
     return (
-        <>
-            <Navbar bg="dark" variant="dark">
-                <Navbar.Brand href="/">The Restaurant</Navbar.Brand>
-                <Nav className="mr-auto"></Nav>
-                <Button className="mr-2" variant="outline-info">
-                    Log In
-                </Button>
-                <Button variant="outline-info">Sign Up</Button>
-                <div className="navbar__cartIcon">
+        <div className="navbar">
+            <div className="navbar__left">
+                <Link to="/">
+                    <div className="navbar__brand">Restaurant</div>
+                </Link>
+            </div>
+            <div className="navbar__right">
+                <div className="navbar__signin navbar__options">
+                    <Button variant="contained" color="primary">
+                        Sign In
+                    </Button>
+                </div>
+                <div className="navbar__signup navbar__options">
+                    <Button variant="contained" color="primary">
+                        Sign Up
+                    </Button>
+                </div>
+                <div className="navbar__cart navbar__options">
                     <Link to="/checkout">
-                        <i class="lni lni-cart"></i>
+                        <ShoppingCartIcon fontSize="large" />
                     </Link>
                 </div>
-                <div className="navbar__orderNumber">20</div>
-            </Navbar>
-        </>
+                <div className="navbar__itemCount navbar__options">10</div>
+            </div>
+        </div>
     );
 }
 

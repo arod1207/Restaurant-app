@@ -1,0 +1,23 @@
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 15px;
+}
+
+.items__card {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    max-width: 400px;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: grey;
+}
+
+.items__image > img {
+    object-fit: cover;
+    max-height: 200px;
+    width: 100%;
+}

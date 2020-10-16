@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Container, Jumbotron, Row } from 'react-bootstrap';
-
 import Items from '../Items/Items';
 
 import './Home.css';
@@ -9,19 +7,12 @@ import './Home.css';
 function Home() {
     return (
         <div className="home">
-            <Jumbotron>
+            <div className="home__title">
                 <h1>Welcome to my Restaurant</h1>
-            </Jumbotron>
-            <Container>
-                <Row className="home__item">
-                    <Items />
-                    <Items />
-                    <Items />
-                    <Items />
-                    <Items />
-                    <Items />
-                </Row>
-            </Container>
+            </div>
+            <div className="home__items">
+                <Items />
+            </div>
         </div>
     );
 }

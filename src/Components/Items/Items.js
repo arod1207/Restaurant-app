@@ -1,22 +1,50 @@
-import React from 'react';
-import { Button, Card } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import db from '../../firbase';
+
+import Button from '@material-ui/core/Button';
 
 import './Items.css';
 
 function Items() {
+    const [items, setItems] = useState([]);
+
+    console.log('🔫', items);
+
+    useEffect(() => {
+        db.collection('Items').onSnapshot((snapshot) =>
+            setItems(
+                snapshot.docs.map((doc) => ({ id: doc.id, item: doc.data() }))
+            )
+        );
+    }, []);
+
+    // function to add to shopping cart //
+    const addToCart = (e) => {
+        setItems(e.target.value);
+        console.log(items);
+    };
+
     return (
         <div className="items">
-            <Card style={{ width: '18rem' }}>
-                <Card.Img
-                    variant="top"
-                    src="https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/6/1/2/FNM_070112-Copy-That-Almost-Famous-Animal-Style-Burger-Recipe_s4x3.jpg.rend.hgtvcom.406.305.suffix/1382541460839.jpeg"
-                />
-                <Card.Body>
-                    <Card.Title>Burger</Card.Title>
-                    <Card.Text>Double Quarter Pounder with cheese</Card.Text>
-                    <Button variant="primary">Order</Button>
-                </Card.Body>
-            </Card>
+            {items.map((item) => (
+                <div className="items__card" key={item.id}>
+                    <div className="items__image">
+                        <img src={item.item.image} alt="" />
+                    </div>
+                    <div className="items__name">{item.item.name}</div>
+                    <div className="item__price">{item.item.price}</div>
+                    <div className="items__orderButton">
+                        <Button
+                            value={item.id}
+                            onClick={addToCart}
+                            variant="contained"
+                            color="primary"
+                        >
+                            Order
+                        </Button>
+                    </div>
+                </div>
+            ))}
         </div>
     );
 }
