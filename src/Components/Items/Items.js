@@ -7,6 +7,7 @@ import './Items.css';
 
 function Items() {
     const [items, setItems] = useState([]);
+    // const [ordered, setOrdered] = useState([]);
 
     console.log('🔫', items);
 
@@ -19,9 +20,15 @@ function Items() {
     }, []);
 
     // function to add to shopping cart //
-    const addToCart = (e) => {
-        setItems(e.target.value);
-        console.log(items);
+    const addToCart = (item) => {
+        console.log(item);
+        db.collection('Items')
+            .add({
+                image: item.item.image,
+                name: item.item.name,
+                price: item.item.price,
+            })
+            .then(console.log('🚀'));
     };
 
     return (
@@ -35,8 +42,7 @@ function Items() {
                     <div className="item__price">{item.item.price}</div>
                     <div className="items__orderButton">
                         <Button
-                            value={item.id}
-                            onClick={addToCart}
+                            onClick={(e) => addToCart(item)}
                             variant="contained"
                             color="primary"
                         >
