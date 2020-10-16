@@ -1,0 +1,11 @@
+.navbar__cartIcon {
+    font-size: 30px;
+    margin-left: 10px;
+    color: yellow;
+}
+
+.navbar__orderNumber {
+    font-size: 30px;
+    color: yellow;
+    margin-left: 5px;
+}
