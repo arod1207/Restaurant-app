@@ -1,21 +1,27 @@
-import React, { useState, useEffect, createContext } from 'react'
+import React, { useState, useEffect, createContext } from 'react';
 
-import firebase from firebase
-import { auth } from './firbase'
+import firebase from 'firebase';
 
 export const userContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [ user, setUser ] = useState(null)
-  const [ email, setEmail ] = useState('')
-  const [ password, setPassword ] = useState('')
+    const [user, setUser] = useState(null);
 
-  console.log('👱', user);
+    console.log('👱', user);
 
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                setUser(user);
+            } else {
+                console.log('no user signed in');
+            }
+        });
+    }, []);
 
-  useEffect(() => {
-
-    firebase.auth().createUserWithEmailandPassword(email, password).then((console.log('user added')))
-
-  }, [])
-}
+    return (
+        <userContext.Provider value={[user, setUser]}>
+            {children}
+        </userContext.Provider>
+    );
+};

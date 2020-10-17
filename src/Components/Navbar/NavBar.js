@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
 import { basketContext } from '../../basketContext';
+import { userContext } from '../../userContext';
 
 import { Link } from 'react-router-dom';
 
@@ -11,6 +12,9 @@ import './NavBar.css';
 
 function NavBar() {
     const [items, setItems] = useContext(basketContext);
+    const [user, setUser] = useContext(userContext);
+
+    console.log('🧘‍♂️', user);
 
     return (
         <div className="navbar">
@@ -21,9 +25,11 @@ function NavBar() {
             </div>
             <div className="navbar__right">
                 <div className="navbar__signin navbar__options">
-                    <Button variant="contained" color="primary">
-                        Sign In
-                    </Button>
+                    <Link to="/signin">
+                        <Button variant="contained" color="primary">
+                            Sign In
+                        </Button>
+                    </Link>
                 </div>
                 <div className="navbar__signup navbar__options">
                     <Link to="/signup">
