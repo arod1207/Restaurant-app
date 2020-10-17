@@ -11,6 +11,15 @@ import './Checkout.css';
 function Checkout() {
     const [items, setItems] = useContext(basketContext);
 
+    const totalSum = items.map((item) => item.item.price);
+
+    const reducer = (accumulator, item) => {
+        return accumulator + item;
+    };
+
+    const total = totalSum.reduce(reducer, 0);
+    console.log(total);
+
     return (
         <>
             <div className="checkout__title">Checkout</div>
@@ -37,7 +46,7 @@ function Checkout() {
                     </div>
                 ))}
             </div>
-            <div className="checkout__total">{`${items.price}`}</div>
+            <div className="checkout__total">${total.toFixed(2)}</div>
         </>
     );
 }
