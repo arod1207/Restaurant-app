@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { basketContext } from '../../basketContext';
 
 import { Link } from 'react-router-dom';
 
@@ -8,6 +10,8 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import './NavBar.css';
 
 function NavBar() {
+    const [items, setItems] = useContext(basketContext);
+
     return (
         <div className="navbar">
             <div className="navbar__left">
@@ -31,7 +35,9 @@ function NavBar() {
                         <ShoppingCartIcon fontSize="large" />
                     </Link>
                 </div>
-                <div className="navbar__itemCount navbar__options">10</div>
+                <div className="navbar__itemCount navbar__options">
+                    {items.length}
+                </div>
             </div>
         </div>
     );

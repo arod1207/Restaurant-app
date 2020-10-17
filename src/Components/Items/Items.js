@@ -1,23 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import db from '../../firbase';
+
+import { basketContext } from '../../basketContext';
 
 import Button from '@material-ui/core/Button';
 
 import './Items.css';
 
 function Items() {
-    const [items, setItems] = useState([]);
-    // const [ordered, setOrdered] = useState([]);
-
-    console.log('🔫', items);
-
-    useEffect(() => {
-        db.collection('Items').onSnapshot((snapshot) =>
-            setItems(
-                snapshot.docs.map((doc) => ({ id: doc.id, item: doc.data() }))
-            )
-        );
-    }, []);
+    const [items, setItems] = useContext(basketContext);
 
     // function to add to shopping cart //
     const addToCart = (item) => {
