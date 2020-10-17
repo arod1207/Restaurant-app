@@ -1,0 +1,36 @@
+.checkout {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 15px;
+}
+
+.checkout__title {
+    text-align: center;
+    font-size: large;
+    margin-top: 10px;
+    font-weight: 800;
+}
+
+.checkout__card {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    max-width: 400px;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: gray;
+}
+
+.checkout__image > img {
+    object-fit: cover;
+    max-height: 200px;
+    width: 100%;
+}
+
+.checkout__total {
+    text-align: center;
+    margin-top: 20px;
+    font-size: large;
+    font-weight: 900;
+}
