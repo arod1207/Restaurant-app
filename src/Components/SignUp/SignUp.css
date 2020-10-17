@@ -1,0 +1,35 @@
+.signup__title {
+    text-align: center;
+    font-size: large;
+    font-weight: 800;
+    margin-top: 10px;
+}
+
+.signup__card {
+    display: grid;
+    justify-content: center;
+    margin-top: 10px;
+    border: 1px solid darkgrey;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 250px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.signup__cardLabel {
+    font-size: 24px;
+    font-weight: 500;
+    padding-bottom: 4px;
+}
+
+.signup__cardInput > input {
+    padding: 4px;
+    width: 250px;
+}
+
+.signup__button {
+    display: grid;
+    margin-top: 10px;
+    justify-content: center;
+}

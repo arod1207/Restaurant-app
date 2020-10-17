@@ -26,9 +26,11 @@ function NavBar() {
                     </Button>
                 </div>
                 <div className="navbar__signup navbar__options">
-                    <Button variant="contained" color="primary">
-                        Sign Up
-                    </Button>
+                    <Link to="/signup">
+                        <Button variant="contained" color="primary">
+                            Sign Up
+                        </Button>
+                    </Link>
                 </div>
                 <div className="navbar__cart navbar__options">
                     <Link to="/checkout">

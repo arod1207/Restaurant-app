@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext } from 'react';
-import db from './firbase';
+import { db } from './firebase';
 
 export const basketContext = createContext();
 

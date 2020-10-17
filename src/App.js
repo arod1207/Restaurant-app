@@ -6,6 +6,7 @@ import { BasketProvider } from './basketContext';
 import NavBar from './Components/Navbar/NavBar';
 import Home from './Components/Home/Home';
 import Checkout from './Components/Checkout/Checkout';
+import SignUp from './Components/SignUp/SignUp';
 
 import './App.css';
 
@@ -16,9 +17,8 @@ function App() {
                 <Router>
                     <NavBar />
                     <Switch>
-                        <Route path="/checkout">
-                            <Checkout />
-                        </Route>
+                        <Route path="/checkout" component={Checkout} />
+                        <Route path="/signup" component={SignUp} />
                         <Route path="/" component={Home} />
                     </Switch>
                 </Router>

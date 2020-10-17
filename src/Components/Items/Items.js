@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import db from '../../firbase';
+import { db } from '../../firebase';
 
 import { basketContext } from '../../basketContext';
 
