@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+
+import { userContext } from '../../userContext';
 
 import Items from '../Items/Items';
 
 import './Home.css';
 
 function Home() {
+    const [user, setUser] = useContext(userContext);
+
     return (
         <div className="home">
             <div className="home__title">
-                <h1>Welcome to my Restaurant</h1>
+                {!user ? <h1>Welcome Guest</h1> : <h1>Welcome {user.email}</h1>}
             </div>
             <div className="home__items">
                 <Items />
