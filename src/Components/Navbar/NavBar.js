@@ -1,21 +1,20 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import firebase from 'firebase';
 
 import { basketContext } from '../../basketContext';
 import { userContext } from '../../userContext';
 
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 import './NavBar.css';
 
-function NavBar() {
+function NavBar({ history }) {
     const [items, setItems] = useContext(basketContext);
     const [user, setUser] = useContext(userContext);
-    const [signedIn, setSignedIn] = useState(false);
 
     console.log('🧘‍♂️', user);
 
@@ -23,7 +22,9 @@ function NavBar() {
         firebase
             .auth()
             .signOut()
-            .then(() => alert('You are Signed Out'))
+            .then(() => {
+                alert('You are Signed Out');
+            })
             .catch((error) => alert('There was an error'));
     };
 

@@ -14,7 +14,7 @@ export const UserProvider = ({ children }) => {
             if (user) {
                 setUser(user);
             } else {
-                console.log('no user signed in');
+                setUser(null);
             }
         });
     }, []);

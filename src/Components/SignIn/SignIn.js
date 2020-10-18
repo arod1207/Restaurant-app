@@ -5,7 +5,6 @@ import firebase from 'firebase';
 import { Button } from '@material-ui/core';
 
 import './SignIn.css';
-import { Redirect } from 'react-router-dom';
 
 function SignIn({ history }) {
     const [email, setEmail] = useState('');
@@ -23,7 +22,6 @@ function SignIn({ history }) {
             })
             .catch((error) => alert(error));
 
-        setEmail('');
         setPassword('');
     };
 
