@@ -1,9 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+
+import firebase from 'firebase';
 
 import { basketContext } from '../../basketContext';
 import { userContext } from '../../userContext';
 
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -13,8 +15,17 @@ import './NavBar.css';
 function NavBar() {
     const [items, setItems] = useContext(basketContext);
     const [user, setUser] = useContext(userContext);
+    const [signedIn, setSignedIn] = useState(false);
 
     console.log('🧘‍♂️', user);
+
+    const handleSignOut = () => {
+        firebase
+            .auth()
+            .signOut()
+            .then(() => alert('You are Signed Out'))
+            .catch((error) => alert('There was an error'));
+    };
 
     return (
         <div className="navbar">
@@ -25,17 +36,29 @@ function NavBar() {
             </div>
             <div className="navbar__right">
                 <div className="navbar__signin navbar__options">
-                    <Link to="/signin">
-                        <Button variant="contained" color="primary">
-                            Sign In
+                    {!user ? (
+                        <Link to="/signin">
+                            <Button variant="contained" color="primary">
+                                Sign In
+                            </Button>
+                        </Link>
+                    ) : (
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={handleSignOut}
+                        >
+                            Sign Out
                         </Button>
-                    </Link>
+                    )}
                 </div>
                 <div className="navbar__signup navbar__options">
                     <Link to="/signup">
-                        <Button variant="contained" color="primary">
-                            Sign Up
-                        </Button>
+                        {!user ? (
+                            <Button variant="contained" color="primary">
+                                Sign Up
+                            </Button>
+                        ) : null}
                     </Link>
                 </div>
                 <div className="navbar__cart navbar__options">

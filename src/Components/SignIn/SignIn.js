@@ -5,8 +5,9 @@ import firebase from 'firebase';
 import { Button } from '@material-ui/core';
 
 import './SignIn.css';
+import { Redirect } from 'react-router-dom';
 
-function SignIn() {
+function SignIn({ history }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -16,7 +17,10 @@ function SignIn() {
         firebase
             .auth()
             .signInWithEmailAndPassword(email, password)
-            .then(() => alert('Logged In'))
+            .then(() => {
+                alert('Logged In');
+                history.push('/');
+            })
             .catch((error) => alert(error));
 
         setEmail('');
