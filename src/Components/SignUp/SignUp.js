@@ -1,96 +1,88 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import firebase from "firebase";
-import { db } from "../../firebase";
+import firebase from 'firebase';
+import { db } from '../../firebase';
 
-import Button from "@material-ui/core/Button";
+import Button from '@material-ui/core/Button';
 
-import "./SignUp.css";
+import './SignUp.css';
 
 function SignUp() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [checkPassword, setCheckPassword] = useState("");
-  const [userId, setUserId] = useState("");
-  const [userEmail, setUserEmail] = useState("");
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [checkPassword, setCheckPassword] = useState('');
 
-  console.log(userId);
+    const handleSignUp = (e) => {
+        e.preventDefault();
 
-  const handleSignUp = (e) => {
-    e.preventDefault();
+        if (password !== checkPassword) {
+            return alert('Passwords do not match');
+        }
 
-    if (password !== checkPassword) {
-      return alert("Passwords do not match");
-    }
+        if (!password) {
+            return alert('Please enter a password1');
+        }
 
-    if (!password) {
-      return alert("Please enter a password1");
-    }
+        firebase
+            .auth()
+            .createUserWithEmailAndPassword(email, password)
+            .then((user) => {
+                db.collection('Users').doc(user.user.uid).set({
+                    email: user.user.email,
+                });
+                alert('User Created');
+                setEmail('');
+                setPassword('');
+                setCheckPassword('');
+            })
+            .catch((error) => alert(error));
+    };
 
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((user) => {
-        setUserId(user.user.uid);
-        setUserEmail(user.user.email);
-      })
-      .then(() => {
-        db.collection("Users")
-          .doc(userId)
-          .set({
-            email: userEmail,
-          })
-          .then(() => {
-            alert("User Created");
-            setEmail("");
-            setPassword("");
-            setCheckPassword("");
-          });
-      })
-      .catch((error) => alert(error));
-  };
-
-  return (
-    <div className="signup">
-      <div className="signup__title">Sign Up</div>
-      <form onSubmit={handleSignUp}>
-        <div className="signup__card">
-          <div className="signup__cardLabel">Email</div>
-          <div className="signup__cardInput">
-            <input
-              type="text"
-              placeholder="username"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="signup__cardLabel">Password</div>
-          <div className="signup__cardInput">
-            <input
-              type="password"
-              placeholder="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div className="signup__cardLabel">Check Password</div>
-          <div className="signup__cardInput">
-            <input
-              type="password"
-              placeholder="password"
-              value={checkPassword}
-              onChange={(e) => setCheckPassword(e.target.value)}
-            />
-          </div>
-          <div className="signup__button">
-            <Button type="submit" variant="contained" color="primary">
-              Submit
-            </Button>
-          </div>
+    return (
+        <div className="signup">
+            <div className="signup__title">Sign Up</div>
+            <form onSubmit={handleSignUp}>
+                <div className="signup__card">
+                    <div className="signup__cardLabel">Email</div>
+                    <div className="signup__cardInput">
+                        <input
+                            type="text"
+                            placeholder="username"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div className="signup__cardLabel">Password</div>
+                    <div className="signup__cardInput">
+                        <input
+                            type="password"
+                            placeholder="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+                    <div className="signup__cardLabel">Check Password</div>
+                    <div className="signup__cardInput">
+                        <input
+                            type="password"
+                            placeholder="password"
+                            value={checkPassword}
+                            onChange={(e) => setCheckPassword(e.target.value)}
+                        />
+                    </div>
+                    <div className="signup__button">
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                        >
+                            Submit
+                        </Button>
+                    </div>
+                </div>
+            </form>
         </div>
-      </form>
-    </div>
-  );
+    );
 }
 
 export default SignUp;
