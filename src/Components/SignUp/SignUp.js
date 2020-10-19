@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import firebase from 'firebase';
 import { db } from '../../firebase';
@@ -11,6 +12,8 @@ function SignUp() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [checkPassword, setCheckPassword] = useState('');
+
+    const history = useHistory();
 
     const handleSignUp = (e) => {
         e.preventDefault();
@@ -34,6 +37,7 @@ function SignUp() {
                 setEmail('');
                 setPassword('');
                 setCheckPassword('');
+                history.push('/');
             })
             .catch((error) => alert(error));
     };
