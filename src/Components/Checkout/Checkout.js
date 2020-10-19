@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import './Checkout.css';
 
 function Checkout() {
-    const [items, setItems] = useContext(basketContext);
+    const [items] = useContext(basketContext);
 
     const totalSum = items.map((item) => item.item.price);
 

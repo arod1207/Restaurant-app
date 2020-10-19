@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 
 import firebase from 'firebase';
-import { auth } from '../../firebase';
+import { db } from '../../firebase';
 
 import Button from '@material-ui/core/Button';
 
 import './SignUp.css';
 
-function SignUp() {
+function SignUp({ history }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [checkPassword, setCheckPassword] = useState('');
+    const [userId, setUserId] = useState('');
+
+    console.log(userId);
 
     const handleSignUp = (e) => {
         e.preventDefault();
@@ -26,12 +29,20 @@ function SignUp() {
         firebase
             .auth()
             .createUserWithEmailAndPassword(email, password)
-            .then(() => alert('User Created'))
-            .catch((error) => alert(error));
+            .then((user) => {
+                setUserId(user.user.uid);
 
-        setEmail('');
-        setPassword('');
-        setCheckPassword('');
+                db.collection('Users').doc('userId').set({
+                    userId: 'mando',
+                });
+
+                alert('User Created');
+                setEmail('');
+                setPassword('');
+                setCheckPassword('');
+                history.push('/');
+            })
+            .catch((error) => alert(error));
     };
 
     return (

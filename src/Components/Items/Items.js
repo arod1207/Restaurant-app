@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import './Items.css';
 
 function Items() {
-    const [items, setItems] = useContext(basketContext);
+    const [items] = useContext(basketContext);
 
     // function to add to shopping cart //
     const addToCart = (item) => {

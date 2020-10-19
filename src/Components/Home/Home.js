@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
 import { userContext } from '../../userContext';
 
@@ -7,7 +7,7 @@ import Items from '../Items/Items';
 import './Home.css';
 
 function Home() {
-    const [user, setUser] = useContext(userContext);
+    const [user] = useContext(userContext);
 
     return (
         <div className="home">

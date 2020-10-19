@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 
 import firebase from 'firebase';
 
@@ -13,10 +13,8 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import './NavBar.css';
 
 function NavBar({ history }) {
-    const [items, setItems] = useContext(basketContext);
-    const [user, setUser] = useContext(userContext);
-
-    console.log('🧘‍♂️', user);
+    const [items] = useContext(basketContext);
+    const [user] = useContext(userContext);
 
     const handleSignOut = () => {
         firebase
