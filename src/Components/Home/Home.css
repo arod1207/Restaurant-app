@@ -6,3 +6,9 @@
 .home__title {
     text-align: center;
 }
+
+.home__items {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}

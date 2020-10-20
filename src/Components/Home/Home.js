@@ -1,6 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { userContext } from '../../userContext';
+
+import { db } from '../../firebase';
 
 import Items from '../Items/Items';
 
@@ -8,6 +10,22 @@ import './Home.css';
 
 function Home() {
     const [user] = useContext(userContext);
+    const [items, setItems] = useState([]);
+
+    console.log('‼️', items);
+
+    useEffect(() => {
+        db.collection('Items').onSnapshot((snapshot) => {
+            setItems(
+                snapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    name: doc.data().name,
+                    price: doc.data().price,
+                    image: doc.data().image,
+                }))
+            );
+        });
+    }, []);
 
     return (
         <div className="home">
@@ -15,7 +33,14 @@ function Home() {
                 {!user ? <h1>Welcome Guest</h1> : <h1>Welcome {user.email}</h1>}
             </div>
             <div className="home__items">
-                <Items />
+                {items.map((item) => (
+                    <Items
+                        id={item.id}
+                        name={item.name}
+                        price={item.price}
+                        image={item.image}
+                    />
+                ))}
             </div>
         </div>
     );

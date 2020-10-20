@@ -1,18 +1,29 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect, createContext, useContext } from 'react';
 import { db } from './firebase';
+import { userContext } from './userContext';
 
 export const basketContext = createContext();
 
 export const BasketProvider = ({ children }) => {
     const [items, setItems] = useState([]);
 
+    console.log('🌺', items);
+    const [user] = useContext(userContext);
+
     useEffect(() => {
-        db.collection('Items').onSnapshot((snapshot) =>
-            setItems(
-                snapshot.docs.map((doc) => ({ id: doc.id, item: doc.data() }))
-            )
-        );
-    }, []);
+        if (user) {
+            db.collection('Users')
+                .doc(user.uid)
+                .collection('Items')
+                .onSnapshot((snapshot) =>
+                    setItems(
+                        snapshot.docs.map((doc) => ({
+                            name: doc.data(),
+                        }))
+                    )
+                );
+        }
+    }, [user]);
 
     return (
         <basketContext.Provider value={[items, setItems]}>
