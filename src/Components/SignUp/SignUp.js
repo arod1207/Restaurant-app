@@ -23,7 +23,7 @@ function SignUp() {
         }
 
         if (!password) {
-            return alert('Please enter a password1');
+            return alert('Please enter a password!');
         }
 
         firebase
@@ -51,16 +51,15 @@ function SignUp() {
                     <div className="signup__cardInput">
                         <input
                             type="text"
-                            placeholder="username"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
+
                     <div className="signup__cardLabel">Password</div>
                     <div className="signup__cardInput">
                         <input
                             type="password"
-                            placeholder="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
@@ -69,7 +68,6 @@ function SignUp() {
                     <div className="signup__cardInput">
                         <input
                             type="password"
-                            placeholder="password"
                             value={checkPassword}
                             onChange={(e) => setCheckPassword(e.target.value)}
                         />

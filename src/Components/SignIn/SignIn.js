@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import firebase from 'firebase';
+import { auth, provider } from '../../firebase';
 
 import { Button } from '@material-ui/core';
 
 import './SignIn.css';
 
-function SignIn({ history }) {
+function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const history = useHistory();
 
     const handleSignIn = (e) => {
         e.preventDefault();
@@ -23,6 +27,11 @@ function SignIn({ history }) {
             .catch((error) => alert(error));
 
         setPassword('');
+    };
+
+    const handleGoogleLogin = () => {
+        auth.signInWithPopup(provider).catch((error) => alert(error.message));
+        history.push('/');
     };
 
     return (
@@ -57,6 +66,15 @@ function SignIn({ history }) {
                             >
                                 Sign In
                             </Button>
+                            <div className="signin__button">
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={handleGoogleLogin}
+                                >
+                                    Sign In With Google
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 </form>
