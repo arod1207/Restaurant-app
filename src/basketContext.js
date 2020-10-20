@@ -6,8 +6,6 @@ export const basketContext = createContext();
 export const BasketProvider = ({ children }) => {
     const [items, setItems] = useState([]);
 
-    console.log('🔫', items);
-
     useEffect(() => {
         db.collection('Items').onSnapshot((snapshot) =>
             setItems(

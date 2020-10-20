@@ -1,17 +1,38 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { db } from '../../firebase';
 
-import { basketContext } from '../../basketContext';
+import { userContext } from '../../userContext';
 
 import Button from '@material-ui/core/Button';
 
 import './Checkout.css';
 
 function Checkout() {
-    const [items] = useContext(basketContext);
+    const [user] = useContext(userContext);
+    const [items, setItems] = useState([]);
 
-    const totalSum = items.map((item) => item.item.price);
+    console.log('🧪', items);
+
+    useEffect(() => {
+        if (user) {
+            db.collection('Users')
+                .doc(user.uid)
+                .collection('Items')
+                .onSnapshot((snapshot) => {
+                    setItems(
+                        snapshot.docs.map((doc) => ({
+                            id: doc.id,
+                            name: doc.data().name,
+                            price: doc.data().price,
+                            image: doc.data().image,
+                        }))
+                    );
+                });
+        }
+    }, [user]);
+
+    const totalSum = items.map((item) => item.price);
 
     const reducer = (accumulator, item) => {
         return accumulator + item;
@@ -27,17 +48,22 @@ function Checkout() {
                 {items.map((item) => (
                     <div className="checkout__card" key={item.id}>
                         <div className="checkout__image">
-                            <img src={item.item.image} alt="" />
+                            <img src={item.image} alt="" />
                         </div>
-                        <div className="checkout__name">{item.item.name}</div>
+                        <div className="checkout__name">{item.name}</div>
 
-                        <div className="checkout__price">{item.item.price}</div>
+                        <div className="checkout__price">{item.price}</div>
                         <div className="checkout__removeButton">
                             <Button
                                 variant="contained"
                                 color="secondary"
                                 onClick={(e) =>
-                                    db.collection('Items').doc(item.id).delete()
+                                    db
+                                        .collection('Users')
+                                        .doc(user.uid)
+                                        .collection('Items')
+                                        .doc(item.id)
+                                        .delete()
                                 }
                             >
                                 Remove
