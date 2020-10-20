@@ -12,8 +12,6 @@ function Home() {
     const [user] = useContext(userContext);
     const [items, setItems] = useState([]);
 
-    console.log('‼️', items);
-
     useEffect(() => {
         db.collection('Items').onSnapshot((snapshot) => {
             setItems(
@@ -35,7 +33,7 @@ function Home() {
             <div className="home__items">
                 {items.map((item) => (
                     <Items
-                        id={item.id}
+                        key={item.id}
                         name={item.name}
                         price={item.price}
                         image={item.image}

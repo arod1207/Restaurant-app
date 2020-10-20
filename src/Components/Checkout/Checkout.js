@@ -12,8 +12,6 @@ function Checkout() {
     const [user] = useContext(userContext);
     const [items, setItems] = useState([]);
 
-    console.log('🧪', items);
-
     useEffect(() => {
         if (user) {
             db.collection('Users')
@@ -39,7 +37,6 @@ function Checkout() {
     };
 
     const total = totalSum.reduce(reducer, 0);
-    console.log(total);
 
     return (
         <>

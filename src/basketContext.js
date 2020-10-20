@@ -7,7 +7,6 @@ export const basketContext = createContext();
 export const BasketProvider = ({ children }) => {
     const [items, setItems] = useState([]);
 
-    console.log('🌺', items);
     const [user] = useContext(userContext);
 
     useEffect(() => {

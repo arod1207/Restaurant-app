@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 
+import { useHistory } from 'react-router-dom';
+
 import firebase from 'firebase';
 
 import { basketContext } from '../../basketContext';
@@ -12,9 +14,11 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 import './NavBar.css';
 
-function NavBar({ history }) {
+function NavBar() {
     const [items] = useContext(basketContext);
     const [user] = useContext(userContext);
+
+    const history = useHistory();
 
     const handleSignOut = () => {
         firebase
@@ -22,6 +26,7 @@ function NavBar({ history }) {
             .signOut()
             .then(() => {
                 alert('You are Signed Out');
+                history.push('/');
             })
             .catch((error) => alert('There was an error'));
     };
@@ -66,7 +71,7 @@ function NavBar({ history }) {
                     </Link>
                 </div>
                 <div className="navbar__itemCount navbar__options">
-                    {items.length}
+                    {user ? items.length : 0}
                 </div>
             </div>
         </div>

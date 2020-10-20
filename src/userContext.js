@@ -7,8 +7,6 @@ export const userContext = createContext();
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
 
-    console.log('👱', user);
-
     useEffect(() => {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {

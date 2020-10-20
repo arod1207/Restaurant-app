@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { db } from '../../firebase';
 
-// import { basketContext } from '../../basketContext';
 import { userContext } from '../../userContext';
 
 import Button from '@material-ui/core/Button';
@@ -9,22 +8,16 @@ import Button from '@material-ui/core/Button';
 import './Items.css';
 
 function Items({ id, name, price, image }) {
-    console.log('yea', price);
-    // const [items] = useContext(basketContext);
     const [user] = useContext(userContext);
 
     // function to add to shopping cart //
     const addToCart = () => {
         if (user) {
-            db.collection('Users')
-                .doc(user.uid)
-                .collection('Items')
-                .add({
-                    image: image,
-                    name: name,
-                    price: price,
-                })
-                .then(console.log('🚀'));
+            db.collection('Users').doc(user.uid).collection('Items').add({
+                image: image,
+                name: name,
+                price: price,
+            });
         }
     };
 
