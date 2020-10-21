@@ -10,6 +10,7 @@ import './Home.css';
 
 function Home() {
     const [user] = useContext(userContext);
+    const [googleUser] = useContext(userContext);
     const [items, setItems] = useState([]);
 
     useEffect(() => {
@@ -28,7 +29,11 @@ function Home() {
     return (
         <div className="home">
             <div className="home__title">
-                {!user ? <h1>Welcome Guest</h1> : <h1>Welcome {user.email}</h1>}
+                {!user ? (
+                    <h1>Welcome Guest</h1>
+                ) : (
+                    <h1>Welcome {user.displayName}</h1>
+                )}
             </div>
             <div className="home__items">
                 {items.map((item) => (
