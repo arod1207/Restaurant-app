@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import NavBar from '../Navbar/NavBar';
+
 import firebase from 'firebase';
 import { auth, provider } from '../../firebase';
 
@@ -30,8 +32,11 @@ function SignIn() {
     };
 
     const handleGoogleLogin = () => {
-        auth.signInWithPopup(provider).catch((error) => alert(error.message));
-        history.push('/');
+        auth.signInWithPopup(provider)
+            .then(() => {
+                history.push('/');
+            })
+            .catch((error) => alert(error.message));
     };
 
     return (

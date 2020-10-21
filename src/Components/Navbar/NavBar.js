@@ -15,8 +15,11 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import './NavBar.css';
 
 function NavBar() {
+    const [googleUser] = useContext(userContext);
     const [items] = useContext(basketContext);
     const [user] = useContext(userContext);
+
+    console.log('🚀', googleUser);
 
     const history = useHistory();
 

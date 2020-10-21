@@ -9,6 +9,7 @@ import Home from './Components/Home/Home';
 import Checkout from './Components/Checkout/Checkout';
 import SignUp from './Components/SignUp/SignUp';
 import SignIn from './Components/SignIn/SignIn';
+import Admin from './Components/Admin/Admin';
 
 import './App.css';
 
@@ -23,6 +24,7 @@ function App() {
                             <Route path="/checkout" component={Checkout} />
                             <Route path="/signup" component={SignUp} />
                             <Route path="/signin" component={SignIn} />
+                            <Route path="/admin" component={Admin} exact />
                             <Route path="/" component={Home} />
                         </Switch>
                     </Router>

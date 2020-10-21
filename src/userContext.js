@@ -6,6 +6,7 @@ export const userContext = createContext();
 
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [googleUser, setGoogleUser] = useState(null);
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged((user) => {
@@ -17,8 +18,20 @@ export const UserProvider = ({ children }) => {
         });
     }, []);
 
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged((googleUser) => {
+            if (googleUser) {
+                setGoogleUser(googleUser);
+            } else {
+                setGoogleUser(null);
+            }
+        });
+    }, []);
+
     return (
-        <userContext.Provider value={[user, setUser]}>
+        <userContext.Provider
+            value={[user, setUser, googleUser, setGoogleUser]}
+        >
             {children}
         </userContext.Provider>
     );
