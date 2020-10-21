@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -69,14 +69,18 @@ function NavBar() {
                         ) : null}
                     </Link>
                 </div>
-                <div className="navbar__cart navbar__options">
-                    <Link to="/checkout">
-                        <ShoppingCartIcon fontSize="large" />
-                    </Link>
-                </div>
-                <div className="navbar__itemCount navbar__options">
-                    {user ? items.length : 0}
-                </div>
+                {!user ? null : (
+                    <div className="navbar__cart navbar__options">
+                        <Link to="/checkout">
+                            <ShoppingCartIcon fontSize="large" />
+                        </Link>
+                    </div>
+                )}
+                {!user ? null : (
+                    <div className="navbar__itemCount navbar__options">
+                        {user ? items.length : 0}
+                    </div>
+                )}
             </div>
         </div>
     );

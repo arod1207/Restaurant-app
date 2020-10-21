@@ -6,8 +6,6 @@ import { db } from '../../firebase';
 
 import Items from '../Items/Items';
 
-import Banner from '../../Assets/Images/banner.jpg';
-
 import './Home.css';
 
 function Home() {
