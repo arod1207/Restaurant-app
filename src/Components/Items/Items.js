@@ -30,13 +30,17 @@ function Items({ id, name, price, image }) {
                 <div className="items__name">{name}</div>
                 <div className="item__price">{price}</div>
                 <div className="items__orderButton">
-                    <Button
-                        onClick={addToCart}
-                        variant="contained"
-                        color="primary"
-                    >
-                        Order
-                    </Button>
+                    {!user ? (
+                        <Button type="disable" />
+                    ) : (
+                        <Button
+                            onClick={addToCart}
+                            variant="contained"
+                            color="primary"
+                        >
+                            Order
+                        </Button>
+                    )}
                 </div>
             </div>
         </div>
