@@ -69,7 +69,13 @@ function Checkout() {
                     </div>
                 ))}
             </div>
-            <div className="checkout__total">${total.toFixed(2)}</div>
+            <div className="checkout__total">
+                {!user
+                    ? `You are not signed in`
+                    : items.length === 0
+                    ? 'Your cart is empty'
+                    : `Your Total is ${total.toFixed(2)}`}
+            </div>
         </>
     );
 }

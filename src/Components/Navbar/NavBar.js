@@ -19,8 +19,6 @@ function NavBar() {
     const [items] = useContext(basketContext);
     const [user] = useContext(userContext);
 
-    console.log('🚀', googleUser);
-
     const history = useHistory();
 
     const handleSignOut = () => {

@@ -7,6 +7,11 @@
     padding: 15px;
 }
 
+.navbar__brand {
+    color: white;
+    font-size: 28px;
+}
+
 .navbar__left {
     font-size: large;
     font-weight: 800;
@@ -31,4 +36,8 @@
 
 .navbar__options {
     margin: 5px;
+}
+
+.MuiSvgIcon-root {
+    color: yellow;
 }
