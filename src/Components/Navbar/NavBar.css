@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     justify-items: center;
-    background-color: darkgray;
+    background-color: midnightblue;
     padding: 15px;
 }
 
@@ -30,8 +30,9 @@
 .navbar__itemCount {
     display: flex;
     align-items: center;
-    font-size: large;
+    font-size: 32px;
     font-weight: 700;
+    color: white;
 }
 
 .navbar__options {

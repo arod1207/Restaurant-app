@@ -6,11 +6,12 @@ import { db } from '../../firebase';
 
 import Items from '../Items/Items';
 
+import Banner from '../../Assets/Images/banner.jpg';
+
 import './Home.css';
 
 function Home() {
     const [user] = useContext(userContext);
-    const [googleUser] = useContext(userContext);
     const [items, setItems] = useState([]);
 
     useEffect(() => {
@@ -28,6 +29,7 @@ function Home() {
 
     return (
         <div className="home">
+            <div className="home__banner"></div>
             <div className="home__title">
                 {!user ? (
                     <h1>Welcome Guest</h1>

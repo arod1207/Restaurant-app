@@ -12,7 +12,8 @@
     max-width: 400px;
     margin-top: 15px;
     padding: 10px;
-    background-color: grey;
+    background-color: white;
+    border-radius: 15px;
 }
 
 .items__image > img {
