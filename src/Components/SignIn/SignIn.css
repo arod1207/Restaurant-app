@@ -33,3 +33,10 @@
     margin-top: 10px;
     justify-content: center;
 }
+
+.signin__homeLink {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: large;
+}

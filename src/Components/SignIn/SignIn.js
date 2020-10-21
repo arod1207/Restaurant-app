@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import firebase from 'firebase';
 import { auth, provider } from '../../firebase';
@@ -72,12 +72,15 @@ function SignIn() {
                             <div className="signin__button">
                                 <Button
                                     variant="contained"
-                                    color="primary"
+                                    color="Secondary"
                                     onClick={handleGoogleLogin}
                                 >
                                     Sign In With Google
                                 </Button>
                             </div>
+                            <Link to="/">
+                                <div className="signin__homeLink">Home</div>
+                            </Link>
                         </div>
                     </div>
                 </form>
