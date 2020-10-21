@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 
 import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import firebase from 'firebase';
 
 import { basketContext } from '../../basketContext';
 import { userContext } from '../../userContext';
 
-import { Link } from 'react-router-dom';
-
+import { Avatar } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
@@ -42,6 +42,9 @@ function NavBar() {
                 </Link>
             </div>
             <div className="navbar__right">
+                <div className="navbar__options">
+                    {user ? <Avatar alt="" src={googleUser.photoURL} /> : ''}
+                </div>
                 <div className="navbar__signin navbar__options">
                     {!user ? (
                         <Link to="/signin">
