@@ -1,5 +1,5 @@
 
-# The Restaurant app
+# The Restaurant App
 
 ## Summary
 ### It may not be Amazon, but it is an e-commerce site built using React.js and Firebase. This was my first attempt using Firebase.
