@@ -78,9 +78,11 @@ function Checkout() {
                     ? 'Your cart is empty'
                     : `Your Total is ${total.toFixed(2)}`}
             </div>
-            <div className="checkout__paypal">
-                <PayPal amount={total.toFixed(2)} />
-            </div>
+            {items.length === 0 ? null : (
+                <div className="checkout__paypal">
+                    <PayPal amount={total.toFixed(2)} />
+                </div>
+            )}
         </>
     );
 }

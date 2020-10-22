@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { userContext } from '../../userContext';
 
 import { PayPalButton } from 'react-paypal-button-v2';
+import { db } from '../../firebase';
 
 function PayPal({ amount }) {
     console.log('💰', amount);
+
+    const [user] = useContext(userContext);
 
     return (
         <div>
