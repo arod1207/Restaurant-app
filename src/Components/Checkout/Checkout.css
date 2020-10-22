@@ -34,3 +34,9 @@
     font-size: large;
     font-weight: 900;
 }
+
+.checkout__paypal {
+    display: grid;
+    justify-content: center;
+    margin-top: 10px;
+}

@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 
+import PayPal from '../PayPalButton/PayPalButton';
+
 import { db } from '../../firebase';
 
 import { userContext } from '../../userContext';
@@ -75,6 +77,9 @@ function Checkout() {
                     : items.length === 0
                     ? 'Your cart is empty'
                     : `Your Total is ${total.toFixed(2)}`}
+            </div>
+            <div className="checkout__paypal">
+                <PayPal amount={total.toFixed(2)} />
             </div>
         </>
     );

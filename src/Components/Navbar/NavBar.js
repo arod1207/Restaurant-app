@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -78,7 +78,7 @@ function NavBar() {
                 )}
                 {!user ? null : (
                     <div className="navbar__itemCount navbar__options">
-                        {user ? items.length : 0}
+                        {user ? items.length : null}
                     </div>
                 )}
             </div>
