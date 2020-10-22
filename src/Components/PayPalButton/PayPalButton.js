@@ -6,8 +6,6 @@ import { PayPalButton } from 'react-paypal-button-v2';
 import { db } from '../../firebase';
 
 function PayPal({ amount }) {
-    console.log('💰', amount);
-
     const [user] = useContext(userContext);
 
     return (
