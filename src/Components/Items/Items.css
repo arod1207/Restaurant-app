@@ -17,6 +17,16 @@
     border-radius: 15px;
 }
 
+.items__name {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.items__price {
+    font-size: 18px;
+    font-weight: 600;
+}
+
 .items__image > img {
     object-fit: cover;
     max-height: 200px;

@@ -28,7 +28,7 @@ function Items({ id, name, price, image }) {
                     <img src={image} alt="" />
                 </div>
                 <div className="items__name">{name}</div>
-                <div className="item__price">{price}</div>
+                <div className="items__price">$ {price}</div>
                 <div className="items__orderButton">
                     {!user ? (
                         <Button type="disable" />

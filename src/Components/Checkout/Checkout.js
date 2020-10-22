@@ -49,9 +49,9 @@ function Checkout() {
                         <div className="checkout__image">
                             <img src={item.image} alt="" />
                         </div>
-                        <div className="checkout__name">{item.name}</div>
+                        <div className="checkout__name ">{item.name}</div>
 
-                        <div className="checkout__price">{item.price}</div>
+                        <div className="checkout__price">$ {item.price}</div>
                         <div className="checkout__removeButton">
                             <Button
                                 variant="contained"
@@ -76,7 +76,7 @@ function Checkout() {
                     ? `You are not signed in`
                     : items.length === 0
                     ? 'Your cart is empty'
-                    : `Your Total is ${total.toFixed(2)}`}
+                    : `Your Total is $ ${total.toFixed(2)}`}
             </div>
             {items.length === 0 ? null : (
                 <div className="checkout__paypal">
