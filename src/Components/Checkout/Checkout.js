@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import PayPal from '../PayPalButton/PayPalButton';
 
@@ -70,6 +71,9 @@ function Checkout() {
                         </div>
                     </div>
                 ))}
+            </div>
+            <div className="checkout__homeLink">
+                <Link to="/">Order More Food</Link>
             </div>
             <div className="checkout__total">
                 {!user
